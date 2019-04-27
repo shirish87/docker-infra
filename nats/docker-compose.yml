@@ -1,0 +1,27 @@
+version: '3.1'
+
+services:
+  # server:
+  #   container_name: nats_server_1
+  #   image: nats:1.4.1
+  #   restart: unless-stopped
+  #   command: -p 4222 -m 8222 -c /config/nats.conf
+  #   ports:
+  #     - ${PORT:-4222}:4222
+  #     - ${PORT_ADMIN:-8222}:8222
+  #     - ${PORT_CLUSTER:-6222}:6222
+  #   volumes:
+  #     - ./config:/config
+
+  streaming:
+    container_name: nats_streaming_1
+    image: nats-streaming:0.14.1
+    restart: unless-stopped
+    command: -p 4222 -m 8222 -c /config/nats-streaming.conf
+    ports:
+      - ${PORT:-4222}:4222
+      - ${PORT_ADMIN:-8222}:8222
+      - ${PORT_CLUSTER:-6222}:6222
+    volumes:
+      - ./config:/config
+      - ./data:/data

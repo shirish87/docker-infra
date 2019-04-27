@@ -1,0 +1,24 @@
+version: '3.1'
+
+services:
+  server:
+    container_name: keycloak_server_1
+    image: jboss/keycloak:6.0.1
+    restart: unless-stopped
+    ports:
+      - ${PORT:-8080}:8080
+      - ${PORT2:-9990}:9990
+    environment:
+      - DB_VENDOR=POSTGRES
+      - DB_ADDR=db
+      - DB_DATABASE=product
+      - DB_USER=product
+      - DB_SCHEMA=public
+      - DB_PASSWORD=4321
+      - KEYCLOAK_USER=${KEYCLOAK_USER:-admin}
+      - KEYCLOAK_PASSWORD=${KEYCLOAK_PASSWORD:-password}
+
+networks:
+  default:
+    external:
+      name: postgres_default
