@@ -1,0 +1,7 @@
+---
+app_host: docker
+app_port: 3000
+service: grafana-simplejson-gateway
+group: example.com
+host: localhost
+service_home: "/home/deploy/grafana-simplejson-gateway"

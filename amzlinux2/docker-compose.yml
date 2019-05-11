@@ -1,0 +1,32 @@
+version: '3.5'
+
+services:
+  server:
+    container_name: ssh_server_1
+    build:
+      context: .
+      dockerfile: Dockerfile
+      args:
+        DOCKER_HOST: "tcp://docker:2375"
+    restart: unless-stopped
+    privileged: true # true: systemd/sshd works, docker fails (docker.sock doesn't mount) | false: docker works, systemd/sshd fails
+    ports:
+      - ${PORT_SSH:-7022}:22
+      - ${PORT_HTTP:-80}:80
+      - ${PORT_HTTPS:-443}:443
+    networks:
+      - docker-net
+
+  docker:
+    container_name: docker-dind
+    image: docker:18-dind
+    restart: unless-stopped
+    privileged: true
+    volumes:
+      - /var/lib/docker
+    networks:
+      - docker-net
+
+networks:
+  docker-net:
+    driver: bridge

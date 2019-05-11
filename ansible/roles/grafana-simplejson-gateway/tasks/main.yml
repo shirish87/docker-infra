@@ -1,0 +1,25 @@
+---
+- name: Clone repository
+  git:
+    repo: https://github.com/dotslashlabs/grafana-simplejson-gateway.git
+    version: master
+    force: yes
+    dest: "{{ service_home }}"
+    accept_hostkey: yes
+  become: yes
+  become_user: deploy
+
+- name: Deploy container
+  shell: make deploy
+  args:
+    chdir: "{{ service_home }}"
+  environment:
+    PATH: "/usr/local/bin:/usr/bin:/usr/local/sbin:/usr/sbin"
+  become: yes
+  become_user: deploy
+
+- name: Copy nginx configuration
+  template: src=nginx.conf.j2 dest="/etc/nginx/conf.d/{{ service }}.{{ group }}.conf"
+  notify: reload nginx
+  become: yes
+  become_user: root

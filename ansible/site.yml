@@ -1,0 +1,9 @@
+---
+- name: Deploy
+  hosts: prod
+  remote_user: root
+  become: true
+  gather_facts: no
+
+  roles:
+    - grafana-simplejson-gateway
