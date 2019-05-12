@@ -22,8 +22,7 @@ RUN yum install -y openssh-server sudo tar git-core make && \
 
 ARG DOCKER_HOST="unix:///var/run/docker.sock"
 ENV DOCKER_HOST="${DOCKER_HOST}"
-RUN echo "DOCKER_HOST=${DOCKER_HOST}" >> /etc/environment && \
-    mkdir /users
+RUN echo "DOCKER_HOST=${DOCKER_HOST}" >> /etc/environment
 
 COPY ./users /users
 RUN chmod +x /users/create-users.sh && \
