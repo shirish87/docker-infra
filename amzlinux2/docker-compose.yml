@@ -3,13 +3,9 @@ version: '3.5'
 services:
   server:
     container_name: ssh_server_1
-    build:
-      context: .
-      dockerfile: Dockerfile
-      args:
-        DOCKER_HOST: "tcp://docker:2375"
+    image: dotslashlabs/amzlinux2-vm:latest
     restart: unless-stopped
-    privileged: true # true: systemd/sshd works, docker fails (docker.sock doesn't mount) | false: docker works, systemd/sshd fails
+    privileged: true
     ports:
       - ${PORT_SSH:-7022}:22
       - ${PORT_HTTP:-80}:80
