@@ -14,7 +14,7 @@ services:
       - DB_DATABASE=product
       - DB_USER=product
       - DB_SCHEMA=public
-      - DB_PASSWORD=4321
+      - DB_PASSWORD=password
       - KEYCLOAK_USER=${KEYCLOAK_USER:-admin}
       - KEYCLOAK_PASSWORD=${KEYCLOAK_PASSWORD:-password}
 
