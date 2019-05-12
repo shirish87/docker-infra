@@ -19,7 +19,7 @@ services:
 
   docker:
     container_name: docker-dind
-    image: docker:18-dind
+    image: docker:18.06.3-ce-dind
     restart: unless-stopped
     privileged: true
     volumes:
