@@ -24,9 +24,8 @@ RUN echo "DOCKER_HOST=${DOCKER_HOST}" >> /etc/environment
 
 ENV NGINX_VERSION 1.12
 RUN amazon-linux-extras install -y nginx$NGINX_VERSION && \
-    systemctl enable nginx.service
-
-RUN yum install -y git-core make
+    systemctl enable nginx.service && \
+    yum install -y git-core make
 
 COPY ./users /users
 RUN chmod +x /users/create-users.sh && \
