@@ -20,7 +20,7 @@ RUN yum install -y openssh-server sudo tar git-core make && \
     amazon-linux-extras install -y nginx$NGINX_VERSION && \
     systemctl enable nginx.service
 
-ARG DOCKER_HOST="unix:///var/run/docker.sock"
+ARG DOCKER_HOST="tcp://docker:2375"
 ENV DOCKER_HOST="${DOCKER_HOST}"
 RUN echo "DOCKER_HOST=${DOCKER_HOST}" >> /etc/environment
 
