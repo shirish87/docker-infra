@@ -14,7 +14,7 @@ services:
       - docker-net
 
   docker:
-    container_name: docker-dind
+    container_name: ssh_dind_1
     image: docker:18.06.3-ce-dind
     restart: unless-stopped
     privileged: true
