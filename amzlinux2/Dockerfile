@@ -4,7 +4,8 @@ ENV DOCKER_VERSION 18.06.3
 ENV DOCKER_COMPOSE_VERSION 1.24.0
 ENV NGINX_VERSION 1.12
 
-RUN yum install -y openssh-server sudo tar git-core make && \
+RUN yum install -y openssh-server sudo cronie tar git-core make && \
+    systemctl enable crond.service && \
     sed -i 's/#\s*PermitRootLogin\s+.*/PermitRootLogin yes/' /etc/ssh/sshd_config && \
     ssh-keygen -q -f /etc/ssh/ssh_host_rsa_key -N '' -t rsa && \
     ssh-keygen -q -f /etc/ssh/ssh_host_ecdsa_key -N '' -t ecdsa && \

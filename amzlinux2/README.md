@@ -11,6 +11,7 @@ Simulates a VM having:
 - Amazon Linux 2 AMI
 - systemd
 - ssh*
+- crond*
 - nginx*
 - docker (WARNING: This runs in *privileged* mode, which is a security risk for the host)
 - docker-compose
