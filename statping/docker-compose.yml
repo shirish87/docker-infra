@@ -1,0 +1,28 @@
+version: '3.1'
+
+services:
+  statping:
+    container_name: statping
+    image: dotslashlabs/statping:latest
+    restart: always
+    ports:
+      - 0.0.0.0:5555:8080
+    volumes:
+      - ./data/app:/app
+
+    environment:
+      NAME: statping
+      DESCRIPTION: Service monitor
+      VIRTUAL_HOST: localhost
+      VIRTUAL_PORT: 5556
+      DB_CONN: postgres
+      DB_HOST: db
+      DB_PORT: 5432
+      DB_USER: product
+      DB_PASS: password
+      DB_DATABASE: product
+
+networks:
+  default:
+    external:
+      name: postgres_default
