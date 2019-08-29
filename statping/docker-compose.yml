@@ -14,7 +14,7 @@ services:
       NAME: statping
       DESCRIPTION: Service monitor
       VIRTUAL_HOST: localhost
-      VIRTUAL_PORT: 5556
+      VIRTUAL_PORT: 5555
       DB_CONN: postgres
       DB_HOST: db
       DB_PORT: 5432
